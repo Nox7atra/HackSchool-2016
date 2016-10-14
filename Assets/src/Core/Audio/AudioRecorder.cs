@@ -2,14 +2,23 @@
 using System.Collections;
 
 public class AudioRecorder : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
+    static readonly string FILE_PATH = "C:\\Users\\Grygory\\Documents\\HackSchool 2016";
+    [SerializeField]
+    private AudioSource _Source;
+	void Start ()
+    {
+        StartCoroutine(RecordSound(4));
+        
+    }
+	
+	void Update ()
+    {
 	
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    IEnumerator RecordSound(int time)
+    {
+        AudioClip clip = Microphone.Start(Microphone.devices[0], false, time, 44100);
+        yield return new WaitForSeconds(time);
+        SaveWav.Save(FILE_PATH, clip); 
+    }
 }
