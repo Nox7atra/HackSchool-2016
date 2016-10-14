@@ -22,6 +22,8 @@ public class AudioRecorder : MonoBehaviour {
     {
         AudioClip clip = Microphone.Start(Microphone.devices[0], false, time, 44100);
         yield return new WaitForSeconds(time);
-        SaveWav.Save(_FileStoragePath + DateTime.Now.Ticks.ToString(), clip); 
+        SaveWav.Save(_FileStoragePath + DateTime.Now.Ticks.ToString(), clip);
+        _Source.clip = clip;
+        _Source.Play();
     }
 }
