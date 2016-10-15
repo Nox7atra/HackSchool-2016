@@ -1,0 +1,13 @@
+# Max2Mtl Version 4.0 Mar 10th, 2001
+#
+newmtl max
+Ka  0.8 0.8 0.8
+Kd  0.8 0.8 0.8
+Ks  0.9 0.9 0.9
+d  1.0
+Ns  0.0
+illum 2
+map_Kd max-textur-end.tga
+map_d max-textur-end.tga
+#
+# EOF

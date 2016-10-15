@@ -1,15 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class FanControler : MonoBehaviour {
+public class FanController : MonoBehaviour
+{
+	[SerializeField]
+	private List<Fan> _Crowd;
+	[SerializeField]
+	private float _MinJumpForce;
+	[SerializeField]
+	private float _MaxJumpForce;
 
-	// Use this for initialization
-	void Start () {
-	
+	public void RndJump()
+	{
+		for (int i = 0; i < _Crowd.Count; i++)
+		{
+			_Crowd[i].Jump(Random.Range(_MinJumpForce, _MaxJumpForce));
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	void Update(){
+		RndJump ();
 	}
+
 }
