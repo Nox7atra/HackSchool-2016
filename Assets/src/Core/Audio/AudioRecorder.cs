@@ -5,16 +5,18 @@ using System.Collections;
 public class AudioRecorder : MonoBehaviour {
     string _FileStoragePath;
     [SerializeField]
-    private AudioSource _Source;
+    private AudioSource _Voice;
+    [SerializeField]
+    private AudioSource _Music;
 	void Start ()
     {
 #if UNITY_EDITOR
         _FileStoragePath = "C:\\Users\\Grygory\\Documents\\HackSchool 2016\\Assets\\Records\\";
 #endif
 #if UNITY_ANDROID || UNITY_IOS
-           _FileStoragePath = "Records";
+         _FileStoragePath = "Records";
 #endif
-        StartCoroutine(RecordSound(4));
+        StartCoroutine(RecordSound((int)_Music.clip.length + 1));
         
     }
 	
@@ -23,7 +25,8 @@ public class AudioRecorder : MonoBehaviour {
         AudioClip clip = Microphone.Start(Microphone.devices[0], false, time, 44100);
         yield return new WaitForSeconds(time);
         SaveWav.Save(_FileStoragePath + DateTime.Now.Ticks.ToString(), clip);
-        _Source.clip = clip;
-        _Source.Play();
+        _Voice.clip = clip;
+        _Music.Play();
+        _Voice.Play();
     }
 }
